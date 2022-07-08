@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "prettier": "prettier '**/*.{js,jsx,ts,tsx}' --write",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@prisma/client": "^3.15.2",
@@ -24,8 +26,19 @@
     "@types/node": "18.0.0",
     "@types/react": "18.0.14",
     "@types/react-dom": "18.0.5",
+    "@typescript-eslint/eslint-plugin": "^5.30.5",
     "eslint": "8.18.0",
     "eslint-config-next": "12.1.6",
-    "typescript": "4.7.4"
+    "eslint-config-prettier": "^8.5.0",
+    "lint-staged": "^13.0.3",
+    "prettier": "^2.7.1",
+    "typescript": "4.7.4",
+    "husky": "^8.0.0"
+  },
+  "lint-staged": {
+    "**/*.{ts,tsx,js,jsx}": [
+      "npm run prettier",
+      "npm run lint"
+    ]
   }
 }

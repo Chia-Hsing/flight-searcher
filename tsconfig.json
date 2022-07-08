@@ -23,12 +23,12 @@
     "incremental": true,
     "removeComments": true,
     "sourceMap": true,
-    "baseUrl": ".",
     "strictNullChecks": true,
     "noImplicitThis": true,
     "checkJs": false
   },
   "include": [
+    "global.d.ts",
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
