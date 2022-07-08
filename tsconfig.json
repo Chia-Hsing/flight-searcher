@@ -25,7 +25,9 @@
     "sourceMap": true,
     "strictNullChecks": true,
     "noImplicitThis": true,
-    "checkJs": false
+    "checkJs": false,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
   },
   "include": [
     "global.d.ts",
