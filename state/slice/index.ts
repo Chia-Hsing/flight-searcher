@@ -1,7 +1,7 @@
 import { combineReducers } from '@reduxjs/toolkit'
 
-import agendaReducer from './agenda'
+import subjectSlice from './subject'
 
-const reducers = combineReducers({ agenda: agendaReducer })
+const reducers = combineReducers({ [subjectSlice.name]: subjectSlice.reducer })
 
 export default reducers

@@ -22,7 +22,7 @@
     "jsx": "preserve",
     "incremental": true,
     "removeComments": true,
-    "sourceMap": true,
+    "sourceMap": false,
     "strictNullChecks": true,
     "noImplicitThis": true,
     "checkJs": false,
@@ -30,7 +30,7 @@
     "emitDecoratorMetadata": true,
   },
   "include": [
-    "global.d.ts",
+    "types.d.ts",
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"

@@ -1,0 +1,55 @@
+$font-size: (
+    desktop: (
+        1: 0.8rem,
+        2: 1rem,
+        3: 1.2rem,
+        4: 1.4rem,
+        5: 1.6rem,
+        6: 1.8rem,
+    ),
+    mobile: (
+        1: 0.5rem,
+        2: 0.7rem,
+        3: 1.9rem,
+        4: 1.1rem,
+        5: 1.3rem,
+        6: 1.5rem,
+    ),
+);
+
+@mixin font-size(size: 3) {
+    @media screen and (min-width: 768px) {
+        $desktop: map-get($fontSizes, desktop);
+        font-size: map-get($desktop, size);
+    }
+
+    @media screen and (max-width: 767px) {
+        $mobile: map-get($fontSizes, mobile);
+        font-size: map-get($mobile, size);
+    }
+}
+
+$breakpoints: (
+    desktop: 1025px,
+    tablet: 768px,
+    mobile: 568px,
+);
+
+@mixin response($breakpoint) {
+    @if ($breakpoint == l) {
+        @media screen and (max-width: map-get($breakpoints, "desktop")) {
+            @content;
+        }
+    }
+
+    @if ($breakpoint == m) {
+        @media screen and (max-width: map-get($breakpoints, "tablet")) {
+            @content;
+        }
+    }
+    @if ($breakpoint == s) {
+        @media screen and (max-width: map-get($breakpoints, "mobile")) {
+            @content;
+        }
+    }
+}
