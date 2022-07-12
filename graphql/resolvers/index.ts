@@ -1,1 +1,2 @@
-export { Query } from './Query'
+export * from './Query'
+export * from './City'

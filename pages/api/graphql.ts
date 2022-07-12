@@ -1,13 +1,13 @@
 import { ApolloServer } from 'apollo-server-micro'
 import { typeDefs } from '../../graphql/schema'
-import { Query } from '../../graphql/resolvers'
+import { Query, City } from '../../graphql/resolvers'
 import Cors from 'micro-cors'
 
 const cors = Cors()
 
 const apolloServer = new ApolloServer({
     typeDefs,
-    resolvers: { Query },
+    resolvers: { Query, City },
 })
 
 // Framework-specific Apollo Server packages define a method to connect Apollo Server to web framework.

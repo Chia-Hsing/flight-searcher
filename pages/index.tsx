@@ -1,6 +1,6 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import { gql, useQuery } from '@apollo/client'
+import { gql, useLazyQuery } from '@apollo/client'
 import { client } from './_app'
 import axios from 'axios'
 
@@ -11,7 +11,7 @@ const QUERY = gql`
 `
 
 const Main: NextPage = () => {
-    const { error, loading, data } = useQuery(QUERY)
+    const [, { error, loading, data }] = useLazyQuery(QUERY)
 
     return (
         <div>
@@ -35,9 +35,10 @@ export async function getServerSideProps() {
         `,
     })
 
-    const response = await axios(
-        `${process.env.API_BASE_URL}flights?access_key=${process.env.API_ACCESS_KEY}&limit=100`
-    )
+    // const response = await axios(
+    //     `${process.env.AVIATION_STACK_API_BASE_URL}flights?access_key=${process.env.AVIATION_STACK_API_ACCESS_KEY}&limit=100`
+    // )
+    // console.log('🧬 ~ getServerSideProps ~ response', response)
 
     return {
         props: {

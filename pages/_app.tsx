@@ -9,7 +9,7 @@ import Layout from '../components/layout/Layout'
 import '../styles/globals.scss'
 
 export const client = new ApolloClient({
-    uri: 'http://localhost:3000/api/graphql',
+    uri: process.env.NEXT_PUBLIC_GRAPHQL_API_BASE_URL_LOCAL,
     cache: new InMemoryCache(),
 })
 
