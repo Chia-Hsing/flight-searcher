@@ -1,13 +1,21 @@
 import { ApolloServer } from 'apollo-server-micro'
-import { typeDefs } from '../../graphql/schema'
-import { Query, City } from '../../graphql/resolvers'
 import Cors from 'micro-cors'
+import Amadeus from 'amadeus'
+
+import { typeDefs } from '../../graphql/schema'
+import { Query } from '../../graphql/resolvers'
 
 const cors = Cors()
 
+const amadeus = new Amadeus({
+    clientId: process.env.AMADEUS_API_KEY,
+    clientSecret: process.env.AMADEUS_API_SECRET,
+})
+
 const apolloServer = new ApolloServer({
     typeDefs,
-    resolvers: { Query, City },
+    resolvers: { Query },
+    context: { amadeus },
 })
 
 // Framework-specific Apollo Server packages define a method to connect Apollo Server to web framework.

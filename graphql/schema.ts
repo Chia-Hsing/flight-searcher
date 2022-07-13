@@ -3,36 +3,46 @@ import { gql } from 'apollo-server-micro'
 export const typeDefs = gql`
     type Query {
         flights: [Flight!]!
-        cities: [City!]!
-        airports: [Airport!]!
+        locations(keyword: String!): [Location!]!
     }
 
     type Flight {
-        name: Sting!
+        name: String!
     }
 
-    type City {
-        city_name: String!
-        iata_code: String!
-        latitude: String!
-        longitude: String!
-        timezone: String!
-        airports: [Airport!]!
+    type Location {
+        type: String!
+        subType: String!
+        name: String!
+        detailedName: String!
+        id: ID!
+        self: Self
+        iataCode: String!
+        address: Address
     }
 
     type Airport {
+        type: String!
+        subType: String!
         name: String!
-        iata_code: String!
-        latitude: String!
-        longitude: String!
-        timezone: String!
+        detailedName: String!
+        id: ID!
+        self: Self
+        timeZoneOffset: String!
+        iataCode: String!
+        address: Address
+    }
+
+    type Self {
+        href: String!
+        methods: [String]
+    }
+
+    type Address {
+        cityName: String
+        cityCode: String
+        countryName: String
+        countryCode: String
+        regionCode: String
     }
 `
-
-//flight_status
-//arr_scheduled_time_arr
-//arr_scheduled_time_dep
-//limit
-//offset
-//dep_iata
-//arr_iata

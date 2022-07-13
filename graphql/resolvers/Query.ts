@@ -1,7 +1,17 @@
-import axios from 'axios'
+import Amadeus from 'amadeus'
+
+type LocationsArgs = {
+    keyword: string
+}
 
 export const Query = {
-    City: async (_parent: any, _args: any, _context: any) => {
-        return
+    locations: async (_parent: any, { keyword }: LocationsArgs, { amadeus }: any) => {
+        const res = await amadeus.referenceData.locations.get({
+            keyword,
+            subType: Amadeus.location.any,
+            view: 'LIGHT',
+        })
+
+        return res.data
     },
 }
