@@ -1,17 +1,15 @@
+import { useState } from 'react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import { gql, useLazyQuery } from '@apollo/client'
-// import { client } from './_app'
-// import axios from 'axios'
+import DebounceSelect from '../components/DebounceSelect'
 
-const QUERY = gql`
-    query Query {
-        name
-    }
-`
+interface LocationValue {
+    label: string
+    value: string
+}
 
 const Main: NextPage = () => {
-    // const [, { error, loading, data }] = useLazyQuery(QUERY)
+    const [value, setValue] = useState<LocationValue[]>([])
 
     return (
         <div>
@@ -19,22 +17,24 @@ const Main: NextPage = () => {
                 <title>Flight Search</title>
                 <meta name="description" content="" />
             </Head>
-            <main></main>
+            <main>
+                <DebounceSelect
+                    showSearch
+                    value={value}
+                    placeholder="Select Departure"
+                    onChange={(newValue) => {
+                        setValue(newValue as LocationValue[])
+                    }}
+                    style={{ width: '30%' }}
+                />
+            </main>
         </div>
     )
 }
 
 export default Main
 
-export async function getServerSideProps() {
-    // const { data } = await client.query({
-    //     query: gql`
-    //         query Query {
-    //             name
-    //         }
-    //     `,
-    // })
-
+export async function getStaticProps() {
     return {
         props: {
             // name: data.name,
